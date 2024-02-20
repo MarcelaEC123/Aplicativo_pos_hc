@@ -19,4 +19,18 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('pos.urls')),  # Incluye las URLs de la aplicación 'pos'
 ]
+
+# pos/views.py
+
+
+
+def home(request):
+    # Lógica para la vista de la página de inicio
+    return render(request, 'pos/home.html')
+
+def product_list(request):
+    # Lógica para la vista de la lista de productos
+    products = Product.objects.all()  # Obtén todos los productos desde la base de datos
+    return render(request, 'pos/product_list.html', {'products': products})
